@@ -1,0 +1,79 @@
+package com.ksoft.streams;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.DoubleStream;
+
+class Student{
+	private int id;
+	private String name;
+	private String branch;
+	private double fee;
+	private int yos;
+	public Student(int id, String name, String branch, double fee, int yos) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.branch = branch;
+		this.fee = fee;
+		this.yos = yos;
+	}
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", branch=" + branch + ", fee=" + fee + ", yos=" + yos + "]";
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getBranch() {
+		return branch;
+	}
+	public void setBranch(String branch) {
+		this.branch = branch;
+	}
+	public double getFee() {
+		return fee;
+	}
+	public void setFee(double fee) {
+		this.fee = fee;
+	}
+	public int getYos() {
+		return yos;
+	}
+	public void setYos(int yos) {
+		this.yos = yos;
+	}
+	private static DoubleStream findTotalFeeByBranch(List<Student> StudList,String branch) {
+		return StudList.stream().filter((st)->st.getBranch().equals(branch)).mapToDouble(st->st.getFee().sum());
+	}
+
+}
+
+public class StreamOperationsDemo6 {
+
+	public static void main(String[] args) {
+		List<Student> StudList=new ArrayList<>();
+		Student S1=new Student(1000,"Keerthi","CSE",70000,1);
+		Student S2=new Student(1001,"Deepthi","CSE",1400000,2);
+		Student S3=new Student(1002,"Sruthi","IT",70000,3);
+		Student S4=new Student(1003,"Madhavi","ECE",70000,4);
+		Student S5=new Student(1004,"Devi","IT",1000000,2);
+		Student S6=new Student(1005,"pranathi","CIVIL",70000,3);
+		Student S7=new Student(1006,"manaswi","CSE",70000,4);
+		Student S8=new Student(1007,"navya","EEE",70000,2);
+		
+		StudList.addAll(Arrays.asList(S1,S2,S3,S4,S5,S6,S7,S8));
+
+	}
+
+}
